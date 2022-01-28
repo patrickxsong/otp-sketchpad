@@ -1,8 +1,5 @@
 const container = document.querySelector('.container');
 
-
-createGrid(16);
-
 function createGrid(num) {
     for (let i = 0; i < num; i++) {
         let row = document.createElement("div");
@@ -17,19 +14,19 @@ function createGrid(num) {
 function resetSketch() {
     container.textContent= "";
     let num = parseInt(prompt("Please enter the number (1-100) of squares per side you would like to start with: "));
-    if (num <= 100) {
-        createGrid(num);
-    } else {
-        prompt("Invalid num. Please try again");
-    }
+    while (num > 100) {
+        num = prompt("Invalid num. Please try again");
+    } 
     createGrid(num);
 
     let cells = document.querySelectorAll(".cell");
-    
+
     cells.forEach(cell => cell.addEventListener("mouseenter", function(e) {
         this.classList.add('sketched')
     }));
 }
+
+createGrid(16);
 
 const cells = document.querySelectorAll(".cell");
 
